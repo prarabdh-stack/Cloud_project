@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <h2>Update Book</h2>
+
+    <form method="POST">
+        <input type="text" name="title" value="{{ book['title'] }}" required><br><br>
+        <input type="text" name="author" value="{{ book['author'] }}" required><br><br>
+        <input type="text" name="genre" value="{{ book['genre'] }}" required><br><br>
+        <input type="number" name="year" value="{{ book['published_year'] }}" required><br><br>
+        <input type="number" name="copies" value="{{ book['available_copies'] }}" required><br><br>
+        <button type="submit">Update</button>
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+
+</html>

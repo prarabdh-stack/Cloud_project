@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h2>Add New Book</h2>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Title" required><br><br>
+        <input type="text" name="author" placeholder="Author" required><br><br>
+        <input type="text" name="genre" placeholder="Genre" required><br><br>
+        <input type="number" name="year" placeholder="Published Year" required><br><br>
+        <input type="number" name="copies" placeholder="Number of Copies" required><br><br>
+        <button type="submit">Add Book</button>
+    </form>
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

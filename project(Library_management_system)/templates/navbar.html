@@ -1,0 +1,20 @@
+<div class="navbar">
+    <a href="{{ url_for('dashboard') }}" style="color:white; margin: 0 15px;">🏠 Dashboard</a>
+    <a href="{{ url_for('view_books') }}" style="color:white; margin: 0 15px;">📚 Books</a>
+
+    {% if session['role'] == 'librarian' %}
+        <a href="{{ url_for('add_book') }}" style="color:white; margin: 0 15px;">➕ Add Book</a>
+        <a href="{{ url_for('borrow_book') }}" style="color:white; margin: 0 15px;">📖 Borrow</a>
+        <a href="{{ url_for('return_book') }}" style="color:white; margin: 0 15px;">🔁 Return</a>
+        <a href="{{ url_for('manage_members') }}" style="color:white; margin: 0 15px;">👥 Members</a>
+    {% elif session['role'] == 'member' %}
+        <a href="{{ url_for('my_borrowed_books') }}" style="color:white; margin: 0 15px;">📂 My Books</a>
+        <a href="{{ url_for('change_password') }}" style="color:white; margin: 0 15px;">🔒 Change Password</a>
+    {% endif %}
+
+    <a href="{{ url_for('search_books') }}" style="color:white; margin: 0 15px;">🔍 Search</a>
+    {% if session.get('username') %}
+        <a href="{{ url_for('logout') }}" style="color:white; margin: 0 15px;">🚪 Logout</a>
+    {% endif %}
+
+</div>

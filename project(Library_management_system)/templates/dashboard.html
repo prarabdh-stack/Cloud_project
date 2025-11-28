@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: darkblue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Welcome, {{ user }}!</h1>
+    <p>Your role: <strong>{{ role|capitalize }}</strong></p>
+
+    <hr>
+
+    <h2>{{ role.capitalize() }} Dashboard</h2>
+    <div class="dashboard-actions">
+        {% if role == 'librarian' %}
+            <a href="/books" class="dash-btn">📚 View Books</a>
+            <a href="/add_book" class="dash-btn">➕ Add Book</a>
+            <a href="/borrow_book" class="dash-btn">📖 Borrow Book</a>
+            <a href="/return_book" class="dash-btn">🔁 Return Book</a>
+            <a href="/search" class="dash-btn">🔍 Search Books</a>
+            <a href="/members" class="dash-btn">👥 Manage Members</a>
+            <a href="/add_member" class="dash-btn">➕ Add Member</a>
+        {% elif role == 'member' %}
+            <a href="/books" class="dash-btn">📚 View Books</a>
+            <a href="/my_books" class="dash-btn">📂 My Borrowed Books</a>
+            <a href="/change_password" class="dash-btn">🔒 Change Password</a>
+            <a href="/search" class="dash-btn">🔍 Search Books</a>
+        {% endif %}
+    </div>    
+
+    <hr>
+
+</body>
+</html>
