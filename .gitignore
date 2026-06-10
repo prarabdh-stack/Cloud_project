@@ -1,4 +1,7 @@
-"firebase_credentials.json" 
-"*.json" 
-".env" 
-"node_modules/" 
+firebase_credentials.json
+*.json
+.env
+__pycache__/
+*.pyc
+*.db
+instance/
