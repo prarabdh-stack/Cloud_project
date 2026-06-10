@@ -1,4 +1,5 @@
 # migrate_mysql_to_firestore.py
+import os
 import mysql.connector
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -6,10 +7,10 @@ from datetime import date
 
 # --- CONFIG ---
 MYSQL_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'nilay',     # change if needed
-    'database': 'library'
+    "host": os.environ.get("MYSQL_HOST", "localhost"),
+    "user": os.environ.get("MYSQL_USER", "root"),
+    "password": os.environ.get("MYSQL_PASSWORD"),
+    "database": os.environ.get("MYSQL_DATABASE", "library")
 }
 # path to your service account JSON (rename if needed)
 SERVICE_ACCOUNT = r"project(Library_management_system_using_HTML_Fire_Base)\firebase_credentials.json"

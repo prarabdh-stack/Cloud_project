@@ -1,14 +1,16 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import date, timedelta, datetime
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-secret")
 
 # Initialize Firebase (ensure firebase_credentials.json is in project root)
 if not firebase_admin._apps:
-    cred = credentials.Certificate(r"project(Library_management_system_using_HTML_Fire_Base)\firebase_credentials.json")
+    firebase_path = os.environ.get("FIREBASE_CREDENTIALS_PATH")
+    cred = credentials.Certificate(firebase_path)
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -417,4 +419,4 @@ def delete_member(member_id):
     return redirect(url_for('manage_members'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
